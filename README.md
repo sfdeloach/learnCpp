@@ -55,4 +55,3 @@ Course taught by Abdul Bari
 - Section 25: Number Systems - Conversions
 
 - Section 26: All about Data Type
-
