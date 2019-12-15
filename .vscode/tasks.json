@@ -1,15 +1,35 @@
 {
    "version": "2.0.0",
    "tasks": [
-     {
-       "label": "build hello world",
-       "type": "shell",
-       "command": "g++",
-       "args": ["-g", "-o", "hello", "hello.cpp"],
-       "group": {
-         "kind": "build",
-         "isDefault": true
-       }
-     }
+      {
+         "label": "build hello world",
+         "type": "shell",
+         "command": "g++",
+         "args": [
+            "-g",
+            "-o",
+            "hello.exe",
+            "hello.cpp"
+         ],
+         "group": {
+            "kind": "build",
+            "isDefault": true
+         }
+      },
+      {
+         "label": "build input.cpp",
+         "type": "shell",
+         "command": "g++",
+         "args": [
+            "-g",
+            "-o",
+            "input.exe",
+            "input.cpp"
+         ],
+         "group": {
+            "kind": "build",
+            "isDefault": true
+         }
+      }
    ]
- }
+}
