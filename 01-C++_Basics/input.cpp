@@ -10,7 +10,6 @@ int main()
 {
     // std::cin acts like java's next, nextInt, nextDouble, etc. It will only
     // store a token delimited by white space (new lines, tabs, and spaces).
-    //
     // std::getline() acts like java's nextLine()
 
     int i, j;
