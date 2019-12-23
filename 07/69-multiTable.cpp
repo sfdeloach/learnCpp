@@ -26,6 +26,7 @@ int main()
    }
    cout << endl;
 
+   // create multiplication table
    for (int i = 0; i <= columns; ++i)
    {
       cout << i << "\t";
