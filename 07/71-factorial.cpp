@@ -22,8 +22,7 @@ int main()
    cin >> n;
 
    long double factStirling = pow(2.0 * PI * n, 0.5) * pow(n / E, n);
-
-   cout << "Stirling's approximation: " << factStirling << endl;
+   cout << "Stirling's approx: " << factStirling << endl;
 
    long factorial = 1;
    for (int i = 1; i <= n; ++i)
@@ -31,8 +30,10 @@ int main()
       factorial *= i;
    }
 
-   cout << "Looping calculation:      " << factorial << endl;
-   cout << "Error: " << (double)100 * (factorial - factStirling) / (double)(factorial) << "%" << endl;
+   cout << "Looping calc:      " << factorial << endl;
+   
+   double error = 100.0 * (factorial - factStirling) / (factorial);
+   cout << "Error:             " << error << "%" << endl;
 
    return 0;
 }
