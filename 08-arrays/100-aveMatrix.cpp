@@ -19,7 +19,7 @@ int main()
 
    for (auto &x : array)
    {
-      for (auto &y : x)
+      for (double &y : x)
       {
          sum += y;
          ++ctr;
