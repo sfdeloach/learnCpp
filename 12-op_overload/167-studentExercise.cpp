@@ -24,6 +24,8 @@ private:
    long denom;
    sign s;
 
+   void reduce();
+
 public:
    rational_num(long n = 0, long d = 1)
    {
@@ -39,6 +41,11 @@ public:
 
    friend std::ostream &operator<<(std::ostream &out, rational_num &n);
 };
+
+void rational_num::reduce()
+{
+   // TODO
+}
 
 rational_num rational_num::operator+(rational_num &n)
 {
