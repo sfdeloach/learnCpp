@@ -43,6 +43,9 @@ public:
    friend ostream &operator<<(ostream &out, complex &c);
 };
 
+/**
+ *  Member function definitions for the complex class
+ */
 complex complex::operator+(complex &c)
 {
    return complex(real + c.real, imaginary + c.imaginary);
@@ -78,6 +81,9 @@ bool complex::operator==(complex &c)
    return false;
 }
 
+/**
+ *  Friend function defining the insertion operator for a complex object
+ */
 ostream &operator<<(ostream &out, complex &c)
 {
    char sign = c.imaginary >= 0.0 ? '+' : '-';
