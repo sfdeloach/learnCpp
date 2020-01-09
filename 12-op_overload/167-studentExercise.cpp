@@ -8,20 +8,21 @@
  *                also provided for writing to an outstream.
  */
 
-#include <iostream>
+#include <algorithm>
 #include <cmath>
+#include <iostream>
 
 enum sign
 {
-   NEGATIVE,
-   POSITIVE
+   NEGATIVE = -1,
+   POSITIVE = 1
 };
 
 class rational_num
 {
 private:
-   long numer;
-   long denom;
+   unsigned long numer;
+   unsigned long denom;
    sign s;
 
    void reduce();
@@ -31,7 +32,7 @@ public:
    {
       numer = abs(n);
       denom = abs(d);
-      s = (n > 0) ^ (d > 0) ? NEGATIVE : POSITIVE;
+      s = (n * d < 0) ? sign::NEGATIVE : sign::POSITIVE;
    }
 
    rational_num operator+(rational_num &n);
@@ -44,7 +45,8 @@ public:
 
 void rational_num::reduce()
 {
-   // TODO
+   unsigned long gcd = 1;
+   unsigned long min = std::min(numer, denom);
 }
 
 rational_num rational_num::operator+(rational_num &n)
@@ -59,12 +61,12 @@ rational_num rational_num::operator-(rational_num &n)
 
 rational_num rational_num::operator*(rational_num &n)
 {
-   // TODO
+   return rational_num(s * n.s * numer * n.numer, denom * n.denom);
 }
 
 rational_num rational_num::operator/(rational_num &n)
 {
-   // TODO
+   return rational_num(s * n.s * numer * n.denom, denom * n.numer);
 }
 
 std::ostream &operator<<(std::ostream &out, rational_num &n)
@@ -86,10 +88,16 @@ int main()
    rational_num r1{rational_num(2)};
    rational_num r2{rational_num(-5)};
    rational_num r3{rational_num(2, 4)};
-   rational_num r4{rational_num(-3, 2)};
-   rational_num r5{rational_num(5, -1)};
+   rational_num r4{rational_num(3, 2)};
+   rational_num r5{rational_num(5, 2)};
    rational_num r6{rational_num(-4, -2)};
+
+   rational_num mul = r1 * r2;
+   rational_num div = r4 / r5;
 
    std::cout << r1 << " " << r2 << " " << r3 << " ";
    std::cout << r4 << " " << r5 << " " << r6 << std::endl;
+
+   std::cout << r1 << " * " << r2 << " = " << mul << std::endl;
+   std::cout << r4 << " / " << r5 << " = " << div << std::endl;
 }
