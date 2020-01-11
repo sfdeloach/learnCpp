@@ -100,6 +100,7 @@ int main()
    complex c5{complex(3, 2)};
    complex c6{complex(5, 6)};
    complex c7{complex(4, -5)};
+   complex c8;
 
    complex add = c1 + c2;
    complex sub = c3 - c4;
@@ -114,7 +115,8 @@ int main()
         << c5 << " * " << c6 << " = " << mul << endl
         << c5 << " / " << c7 << " = " << div << endl
         << c1 << " == " << c1 << "? " << compare1 << endl
-        << c1 << " == " << c2 << "? " << compare2 << endl;
+        << c1 << " == " << c2 << "? " << compare2 << endl
+        << "default complex number: " << c8 << endl;
 
    return 0;
 }
