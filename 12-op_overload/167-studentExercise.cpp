@@ -33,6 +33,7 @@ public:
       numer = abs(n);
       denom = abs(d);
       s = (n * d < 0) ? sign::NEGATIVE : sign::POSITIVE;
+      reduce();
    }
 
    rational_num operator+(rational_num &n);
@@ -45,18 +46,38 @@ public:
 
 void rational_num::reduce()
 {
+   if(denom == 1)
+   {
+      return;
+   }
+
    unsigned long gcd = 1;
    unsigned long min = std::min(numer, denom);
+
+   for(unsigned long i = 2; i <= min; ++i)
+   {
+      if(numer % i == 0 && denom % i == 0)
+         gcd = i;
+   }
+
+   numer /= gcd;
+   denom /= gcd;
 }
 
 rational_num rational_num::operator+(rational_num &n)
 {
-   // TODO
+   unsigned long common_denom = denom * n.denom;
+   unsigned long numer_sum = (s * numer * n.denom) + (n.s * n.numer * denom);
+   
+   return rational_num(numer_sum, common_denom);
 }
 
 rational_num rational_num::operator-(rational_num &n)
 {
-   // TODO
+   unsigned long common_denom = denom * n.denom;
+   unsigned long numer_sum = (s * numer * n.denom) - (n.s * n.numer * denom);
+   
+   return rational_num(numer_sum, common_denom);
 }
 
 rational_num rational_num::operator*(rational_num &n)
@@ -85,19 +106,23 @@ std::ostream &operator<<(std::ostream &out, rational_num &n)
 
 int main()
 {
-   rational_num r1{rational_num(2)};
-   rational_num r2{rational_num(-5)};
-   rational_num r3{rational_num(2, 4)};
-   rational_num r4{rational_num(3, 2)};
-   rational_num r5{rational_num(5, 2)};
-   rational_num r6{rational_num(-4, -2)};
+   rational_num r1{rational_num(2, 21)};
+   rational_num r2{rational_num(-5, 7)};
+   rational_num r3{rational_num(22, 7)};
+   rational_num r4{rational_num(34, 9)};
+   rational_num r5{rational_num(14, 15)};
+   rational_num r6{rational_num(-45, 61)};
 
+   rational_num add = r3 + r5;
+   rational_num sub = r6 - r2;
    rational_num mul = r1 * r2;
    rational_num div = r4 / r5;
 
    std::cout << r1 << " " << r2 << " " << r3 << " ";
    std::cout << r4 << " " << r5 << " " << r6 << std::endl;
 
+   std::cout << r3 << " + " << r5 << " = " << add << std::endl;
+   std::cout << r6 << " - " << r2 << " = " << sub << std::endl;
    std::cout << r1 << " * " << r2 << " = " << mul << std::endl;
    std::cout << r4 << " / " << r5 << " = " << div << std::endl;
 }
